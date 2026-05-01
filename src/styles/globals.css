@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  a {
+    color: inherit;
+    text-decoration-color: inherit;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Clears sticky header when jumping to in-page anchors */
+    scroll-padding-top: 7.5rem;
+  }
+
+  body {
+    @apply bg-paper text-sumi font-ui antialiased;
+    font-feature-settings: 'ss01', 'cv05';
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: #4a6741;
+    color: #f4ead8;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .grain {
+    background-image: radial-gradient(rgba(28, 28, 28, 0.045) 1px, transparent 1px);
+    background-size: 3px 3px;
+  }
+
+  .vert-rule {
+    background-image: linear-gradient(
+      to right,
+      transparent 0,
+      transparent calc(50% - 0.5px),
+      rgba(140, 128, 112, 0.26) calc(50% - 0.5px),
+      rgba(140, 128, 112, 0.26) calc(50% + 0.5px),
+      transparent calc(50% + 0.5px)
+    );
+  }
+
+  .hairline {
+    border-top-width: 1px;
+    border-color: rgba(140, 128, 112, 0.22);
+  }
+
+  .card-paper {
+    box-shadow:
+      0 1px 0 rgba(28, 28, 28, 0.04),
+      0 14px 30px -18px rgba(28, 28, 28, 0.12);
+  }
+
+  .drop-ink {
+    text-shadow: 0 1px 0 rgba(28, 28, 28, 0.03);
+  }
+
+  .focus-ring {
+    @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oxide;
+  }
+
+  /** Horizontal page gutter — wide editorial canvas */
+  .page-container {
+    @apply mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-10;
+  }
+
+  /** Consistent vertical rhythm between major bands */
+  .page-section {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  .page-section-tight {
+    @apply py-14 sm:py-16 lg:py-20;
+  }
+
+  /** Section eyebrow label (Synth-style small caps rhythm) */
+  .section-label {
+    @apply font-mono text-[10px] uppercase tracking-[0.32em] text-warm sm:text-[11px];
+  }
+
+  .section-label-on-dark {
+    @apply font-mono text-[10px] uppercase tracking-[0.32em] text-paper/50 sm:text-[11px];
+  }
+}

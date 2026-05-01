@@ -1,0 +1,15 @@
+# Dependencies
+node_modules
+
+# Build
+dist
+dist-ssr
+*.local
+
+# Logs / caches
+npm-debug.log*
+.DS_Store
+
+# Env
+.env
+.env.*
