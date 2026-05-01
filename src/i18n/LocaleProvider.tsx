@@ -48,9 +48,9 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(() => {
     try {
       const s = localStorage.getItem(STORAGE_KEY);
-      return s === 'ja' ? 'ja' : 'en';
+      return s === 'en' ? 'en' : 'ja';
     } catch {
-      return 'en';
+      return 'ja';
     }
   });
 

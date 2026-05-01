@@ -19,6 +19,39 @@ function featureSegmentClass(variant: LandingFeatureSegment['variant']) {
   return 'text-gray-500';
 }
 
+/** Large JP headline: animate per grapheme, superscript * after final kana (カイゼン). */
+export function HeroJapanesePullUp({ text, className = '' }: { text: string; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true });
+  const graphemes = Array.from(text);
+  const lastI = graphemes.length - 1;
+
+  return (
+    <div ref={ref} className={`inline-flex flex-wrap items-baseline font-jp-sans ${className}`}>
+      {graphemes.map((g, i) => (
+        <motion.span
+          key={`${g}-${i}`}
+          initial={{ y: 36, opacity: 0 }}
+          animate={isInView ? { y: 0, opacity: 1 } : {}}
+          transition={{ duration: 0.52, ease: EASE, delay: i * 0.065 }}
+          className="inline-block shrink-0"
+        >
+          {i === lastI ? (
+            <span className="relative inline-block">
+              {g}
+              <span className="absolute top-[0.48em] left-full ml-[0.08em] text-[0.34em] font-medium leading-none" aria-hidden>
+                *
+              </span>
+            </span>
+          ) : (
+            g
+          )}
+        </motion.span>
+      ))}
+    </div>
+  );
+}
+
 /** EN hero word “Kaizen” — superscript * after trailing “a”. */
 export function WordsPullUp({
   text,

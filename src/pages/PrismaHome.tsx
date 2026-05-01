@@ -10,6 +10,7 @@ import {
   CARD_EASE,
   EASE,
   FeatureCard,
+  HeroJapanesePullUp,
   WordsPullUp,
   WordsPullUpAboutLanding,
   WordsPullUpFeaturesLanding
@@ -50,17 +51,24 @@ export default function PrismaHome() {
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
 
             <div className="absolute top-4 left-4 right-4 z-10 md:top-6 md:left-8 md:right-8">
-              <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-primary/80 sm:text-xs">{L.heroEyebrow}</p>
+              <p
+                className={
+                  locale === 'ja'
+                    ? 'font-jp-sans text-[11px] font-medium leading-snug tracking-[0.04em] text-primary/88 sm:text-sm'
+                    : 'font-mono text-[10px] uppercase tracking-[0.35em] text-primary/80 sm:text-xs'
+                }
+              >
+                {L.heroEyebrow}
+              </p>
             </div>
 
             <div className="absolute right-0 bottom-0 left-0 z-10 p-4 sm:p-6 md:p-8">
               <div className="grid grid-cols-12 items-end gap-6">
-                <div className="col-span-12 md:col-span-8">
+                <div className="col-span-12 min-w-0 md:col-span-8">
                   {locale === 'ja' ? (
-                    <WordsPullUp
+                    <HeroJapanesePullUp
                       text={L.heroWordJa}
-                      showKaizenJaAsterisk
-                      className="text-[26vw] font-medium leading-[0.85] tracking-[-0.07em] sm:text-[24vw] md:text-[22vw] lg:text-[20vw] xl:text-[19vw] 2xl:text-[20vw]"
+                      className="max-w-full text-[clamp(3.75rem,21vw,13.5rem)] font-semibold leading-[1.02] tracking-tight text-primary"
                     />
                   ) : (
                     <WordsPullUp
@@ -75,7 +83,7 @@ export default function PrismaHome() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.75, delay: 0.5, ease: EASE }}
-                    className="text-xs leading-[1.2] text-primary/70 sm:text-sm md:text-base"
+                    className={`text-xs leading-[1.65] text-primary/72 sm:text-sm md:text-base ${locale === 'ja' ? 'font-jp-sans' : ''}`}
                   >
                     {L.heroLead}
                   </motion.p>
